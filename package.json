@@ -3,11 +3,31 @@
   "version": "1.0.2",
   "description": "Node.js library for the Aspect UI framework",
   "license": "MIT",
-  "repository": "tscepo/aspect-ui",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tscepo/aspect-ui.git"
+  },
   "main": "index.js",
   "keywords": [
     "ui",
     "aspect",
     "metacode"
-  ]
+  ],
+  "bugs": {
+    "url": "https://github.com/tscepo/aspect-ui/issues"
+  },
+  "homepage": "https://github.com/tscepo/aspect-ui#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "chalk": "^5.0.0",
+    "commander": "^9.0.0",
+    "conf": "^10.1.1"
+  },
+  "bin": {
+    "aspect": "./index.js"
+  }
 }
