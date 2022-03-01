@@ -1,14 +1,13 @@
 {
   "name": "@metacode-inc/aspect",
-  "version": "1.0.1",
-  "description": "Removes all spaces from a string",
+  "version": "1.0.2",
+  "description": "Node.js library for the Aspect UI framework",
   "license": "MIT",
-  "repository": "bamblehorse/tiny",
+  "repository": "tscepo/aspect-ui",
   "main": "index.js",
   "keywords": [
-    "tiny",
-    "npm",
-    "package",
-    "bamblehorse"
+    "ui",
+    "aspect",
+    "metacode"
   ]
 }
