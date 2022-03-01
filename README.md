@@ -3,5 +3,5 @@
 ## Installation
 
 ```bash
-$ npm install aspect
+$ npm install @metacode-inc/aspect
 ```
