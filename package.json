@@ -1,4 +1,14 @@
 {
-"name": "@metacode-inc/aspect",
-"version": "1.0.0"
+  "name": "@metacode-inc/aspect",
+  "version": "1.0.1",
+  "description": "Removes all spaces from a string",
+  "license": "MIT",
+  "repository": "bamblehorse/tiny",
+  "main": "index.js",
+  "keywords": [
+    "tiny",
+    "npm",
+    "package",
+    "bamblehorse"
+  ]
 }
