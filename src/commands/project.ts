@@ -1,13 +1,17 @@
-const chalk = require("chalk");
-const axios = require("axios");
+const chalk = require('chalk');
+const axios = require('axios');
 
-async function fetchProjectComponents(projectId, source, options) {
+export async function fetchProjectComponents(
+  projectId: string,
+  source: string,
+  options: any
+) {
   try {
     if (!projectId) {
-      throw new Error("Project ID is required.");
+      throw new Error('Project ID is required.');
     }
     if (!options.key) {
-      throw new Error("--key is required.");
+      throw new Error('--key is required.');
     }
 
     console.log(
@@ -15,9 +19,9 @@ async function fetchProjectComponents(projectId, source, options) {
     );
 
     const urlBase = options.dev
-      ? "https://api.localhost/"
-      : "https://api.aspect.app/";
-    const response = await axios.post(urlBase + "v2/fetch-project-components", {
+      ? 'https://api.localhost/'
+      : 'https://api.aspect.app/';
+    const response = await axios.post(urlBase + 'v2/fetch-project-components', {
       projectId,
       key: options.key,
     });
@@ -27,13 +31,17 @@ async function fetchProjectComponents(projectId, source, options) {
   }
 }
 
-async function uploadProjectComponents(projectId, source, options) {
+export async function uploadProjectComponents(
+  projectId: string,
+  source: string,
+  options: any
+) {
   try {
     if (!projectId) {
-      throw new Error("Project ID is required.");
+      throw new Error('Project ID is required.');
     }
     if (!options.key) {
-      throw new Error("--key is required.");
+      throw new Error('--key is required.');
     }
 
     console.log(
@@ -44,10 +52,10 @@ async function uploadProjectComponents(projectId, source, options) {
 
     // glob for all files in the source directory of type .jsx, .tsx, .css, .scss
     const urlBase = options.dev
-      ? "https://api.localhost/"
-      : "https://api.aspect.app/";
+      ? 'https://api.localhost/'
+      : 'https://api.aspect.app/';
     const response = await axios.post(
-      urlBase + "v2/upload-project-components",
+      urlBase + 'v2/upload-project-components',
       {
         projectId,
         key: options.key,
@@ -58,5 +66,3 @@ async function uploadProjectComponents(projectId, source, options) {
     console.error(chalk.red.bold(error));
   }
 }
-
-module.exports = { fetchProjectComponents, uploadProjectComponents };
