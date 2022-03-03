@@ -1,5 +1,6 @@
 // import {Chalk} from 'chalk';
-import {Axios} from 'axios';
+import axios from 'axios';
+import * as colors from 'colors';
 
 async function fetchProjectComponents(
   projectId: string,
@@ -7,7 +8,7 @@ async function fetchProjectComponents(
   options: any
 ) {
   // const chalk = new Chalk();
-  const axios = new Axios();
+  // const axios = new Axios();
 
   try {
     if (!projectId) {
@@ -16,18 +17,26 @@ async function fetchProjectComponents(
     if (!options.key) {
       throw new Error('--key is required.');
     }
-    console.log(`Fetching project components for project ${projectId}...`);
+    console.log(
+      colors.bold.blue(
+        `Fetching project components for project ${projectId}...`
+      )
+    );
 
     const urlBase = options.dev
-      ? 'https://api.localhost/'
+      ? 'http://localhost:80/'
       : 'https://api.aspect.app/';
+
+    console.log(options);
     const response = await axios.post(urlBase + 'v1/fetch-project-components', {
       projectId,
       key: options.key,
     });
-    console.log(response);
+    console.log(response.data);
   } catch (error) {
-    console.error(error);
+    if (typeof error === 'object') {
+      console.error('error', (error as any)?.response?.data);
+    }
   }
 }
 
@@ -37,7 +46,7 @@ async function uploadProjectComponents(
   options: any
 ) {
   // const chalk = new Chalk();
-  const axios = new Axios();
+  // const axios = new Axios();
 
   try {
     if (!projectId) {
@@ -52,7 +61,7 @@ async function uploadProjectComponents(
     // glob for all files in the source directory of type .jsx, .tsx, .css, .scss
     // const files = await import('glob').then((glob) =>
     const urlBase = options.dev
-      ? 'https://api.localhost/'
+      ? 'http://api.localhost/'
       : 'https://api.aspect.app/';
     const response = await axios.post(
       urlBase + 'v1/upload-project-components',
@@ -61,7 +70,7 @@ async function uploadProjectComponents(
         key: options.key,
       }
     );
-    console.log(response);
+    console.log(response.data);
   } catch (error) {
     console.error(error);
   }

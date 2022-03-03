@@ -9,13 +9,15 @@ import {
 program
   .command('fetch <projectId> [destination]')
   .description('Fetch components from specified Aspect project.')
-  .option('--key', 'Aspect API key.')
+  .option('--key <string>', 'Aspect API key.')
+  .option('--dev', 'Developer testing mode.')
   .action(fetchProjectComponents);
 
 program
   .command('upload <projectId> [source]')
   .description('Upload jsx and css to your Aspect project.')
-  .option('--key', 'Aspect API key.')
+  .option('--key <string>', 'Aspect API key.')
+  .option('--dev', 'Developer testing mode.')
   .action(uploadProjectComponents);
 
 program.parse();

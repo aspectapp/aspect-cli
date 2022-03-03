@@ -30,6 +30,7 @@
   "author": "",
   "dependencies": {
     "axios": "^0.26.0",
+    "colors": "^1.4.0",
     "commander": "^9.0.0",
     "conf": "^10.1.1",
     "glob": "^7.2.0"
