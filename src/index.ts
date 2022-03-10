@@ -7,16 +7,20 @@ import {
 } from './commands/project';
 
 program
-  .command('fetch <projectId> [destination]')
+  .command('fetch')
   .description('Fetch components from specified Aspect project.')
-  .option('--key <string>', 'Aspect API key.')
+  .option('--project <string>', 'Project ID')
+  .option('--out <string>', 'Output directory.')
+  .option('--key <string>', 'API key.')
   .option('--dev', 'Developer testing mode.')
   .action(fetchProjectComponents);
 
 program
-  .command('upload <projectId> [source]')
+  .command('upload')
   .description('Upload jsx and css to your Aspect project.')
-  .option('--key <string>', 'Aspect API key.')
+  .option('--project <string>', 'Project ID')
+  .option('--src <string>', 'Source directory.')
+  .option('--key <string>', 'API key.')
   .option('--dev', 'Developer testing mode.')
   .action(uploadProjectComponents);
 

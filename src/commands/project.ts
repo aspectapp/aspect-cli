@@ -1,25 +1,17 @@
-// import {Chalk} from 'chalk';
 import axios from 'axios';
 import * as colors from 'colors';
 
-async function fetchProjectComponents(
-  projectId: string,
-  source: string,
-  options: any
-) {
-  // const chalk = new Chalk();
-  // const axios = new Axios();
-
+async function fetchProjectComponents(options: any) {
   try {
-    if (!projectId) {
-      throw new Error('Project ID is required.');
+    if (!options.project) {
+      throw new Error('--project (project ID) is required.');
     }
     if (!options.key) {
-      throw new Error('--key is required.');
+      throw new Error('--key (API key) is required.');
     }
     console.log(
       colors.bold.blue(
-        `Fetching project components for project ${projectId}...`
+        `Fetching project components for project with ID: ${options.project} ...`
       )
     );
 
@@ -28,9 +20,9 @@ async function fetchProjectComponents(
       : 'https://api.aspect.app/';
 
     console.log(options);
-    const response = await axios.post(urlBase + 'v1/fetch-project-components', {
-      projectId,
-      key: options.key,
+    const response = await axios.post(urlBase + 'v1/get-project-components', {
+      projectId: options.project,
+      apiKey: options.key,
     });
     console.log(response.data);
   } catch (error) {
@@ -45,9 +37,6 @@ async function uploadProjectComponents(
   source: string,
   options: any
 ) {
-  // const chalk = new Chalk();
-  // const axios = new Axios();
-
   try {
     if (!projectId) {
       throw new Error('Project ID is required.');
@@ -67,7 +56,7 @@ async function uploadProjectComponents(
       urlBase + 'v1/upload-project-components',
       {
         projectId,
-        key: options.key,
+        apiKey: options.key,
       }
     );
     console.log(response.data);
