@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as colors from 'colors';
+import * as fs from 'fs';
 import {writeFile} from 'fs/promises';
 import * as path from 'path';
 
@@ -28,19 +29,20 @@ async function fetchProjectComponents(options: any) {
       apiKey: key,
     });
 
-    // write the files to the output directory
-    const files = response.data.data;
-    for (const file of files) {
-      const {name, data} = file;
-
-      console.log(path.join('test', name));
-
-      const relativePath = path.join(out || '', name);
-      console.log(relativePath);
-
-      console.log(`Writing ${relativePath} ...`);
-      await writeFile(relativePath, data);
+    // make sure the output directory exists
+    if (!fs.existsSync(out)) {
+      fs.mkdirSync(out, {recursive: true});
     }
+
+    // write the files to the output directory
+    const files = response.data.data as any[];
+    await Promise.all(
+      files.map(file => {
+        const {name, data} = file;
+        const relativePath = path.join(out || '', name);
+        return writeFile(relativePath, data);
+      })
+    );
   } catch (error) {
     if (typeof error === 'object') {
       console.error('error', (error as any)?.response?.data);
