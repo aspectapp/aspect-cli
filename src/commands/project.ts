@@ -1,17 +1,21 @@
 import axios from 'axios';
 import * as colors from 'colors';
+import {writeFile} from 'fs/promises';
+import * as path from 'path';
 
 async function fetchProjectComponents(options: any) {
   try {
-    if (!options.project) {
+    const {out, project, key} = options;
+    if (!project) {
       throw new Error('--project (project ID) is required.');
     }
-    if (!options.key) {
+    if (!key) {
       throw new Error('--key (API key) is required.');
     }
+
     console.log(
       colors.bold.blue(
-        `Fetching project components for project with ID: ${options.project} ...`
+        `Fetching project components for project with ID: ${project} ...`
       )
     );
 
@@ -19,12 +23,24 @@ async function fetchProjectComponents(options: any) {
       ? 'http://localhost:80/'
       : 'https://api.aspect.app/';
 
-    console.log(options);
     const response = await axios.post(urlBase + 'v1/get-project-components', {
-      projectId: options.project,
-      apiKey: options.key,
+      projectId: project,
+      apiKey: key,
     });
-    console.log(response.data);
+
+    // write the files to the output directory
+    const files = response.data.data;
+    for (const file of files) {
+      const {name, data} = file;
+
+      console.log(path.join('test', name));
+
+      const relativePath = path.join(out || '', name);
+      console.log(relativePath);
+
+      console.log(`Writing ${relativePath} ...`);
+      await writeFile(relativePath, data);
+    }
   } catch (error) {
     if (typeof error === 'object') {
       console.error('error', (error as any)?.response?.data);
@@ -32,20 +48,17 @@ async function fetchProjectComponents(options: any) {
   }
 }
 
-async function uploadProjectComponents(
-  projectId: string,
-  source: string,
-  options: any
-) {
+async function uploadProjectComponents(options: any) {
   try {
-    if (!projectId) {
-      throw new Error('Project ID is required.');
+    const {src, project, key} = options;
+    if (!project) {
+      throw new Error('--project (project ID) is required.');
     }
-    if (!options.key) {
-      throw new Error('--key is required.');
+    if (!key) {
+      throw new Error('--key (API key) is required.');
     }
 
-    console.log(`Uploading project components for project ${projectId}...`);
+    console.log(`Uploading project components for project ${project}...`);
 
     // glob for all files in the source directory of type .jsx, .tsx, .css, .scss
     // const files = await import('glob').then((glob) =>
@@ -55,8 +68,8 @@ async function uploadProjectComponents(
     const response = await axios.post(
       urlBase + 'v1/upload-project-components',
       {
-        projectId,
-        apiKey: options.key,
+        projectId: project,
+        apiKey: key,
       }
     );
     console.log(response.data);
