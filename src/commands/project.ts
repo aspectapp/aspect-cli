@@ -44,9 +44,13 @@ async function fetchProjectComponents(options: any) {
         return writeFile(relativePath, data);
       })
     );
+
+    console.log(colors.green('Successfully fetched project components.'));
   } catch (error) {
     if (typeof error === 'object') {
       console.error('error', (error as any)?.response?.data);
+    } else {
+      console.error(error);
     }
   }
 }
@@ -89,18 +93,20 @@ async function uploadProjectComponents(options: any) {
 
     const urlBase = options.dev
       ? 'http://localhost/'
-      : 'https://api.aspect.app/';
-    const response = await axios.post(
-      urlBase + 'v1/upload-project-components',
-      {
-        projectId: project,
-        apiKey: key,
-        files: fileContent,
-      }
-    );
-    console.log(response.data);
+      : 'https://dev.aspect.app/';
+    await axios.post(urlBase + 'v1/upload-project-components', {
+      projectId: project,
+      apiKey: key,
+      files: fileContent,
+    });
+
+    console.log(colors.green('Successfully uploaded project components.'));
   } catch (error) {
-    console.error(error);
+    if (typeof error === 'object') {
+      console.error('error', (error as any)?.response?.data);
+    } else {
+      console.error(error);
+    }
   }
 }
 
