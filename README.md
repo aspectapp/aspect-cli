@@ -1,5 +1,7 @@
 # Aspect UI builder Node.js Library
 
+The Aspect Node.js library provides convenient syncing of components to and from the Aspect UI builder.
+
 ## Installation
 
 ```bash
