@@ -1,8 +1,10 @@
-# Aspect UI builder Node.js Library
+# Aspect UI builder Node.js CLI
 
-The Aspect Node.js library provides convenient syncing of components to and from the [Aspect UI builder](https://dev.aspect.app).
+The command line tool for quickly syncing components to and from the [Aspect UI builder](https://dev.aspect.app).
 
 ## Installation
+
+To run from the command line, you'll have to install with the `-g` option. Depending on your permissions, installation may require `sudo` prefix.
 
 ```bash
 $ npm install @metacode-inc/aspect -g
