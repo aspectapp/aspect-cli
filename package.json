@@ -1,6 +1,6 @@
 {
   "name": "@metacode-inc/aspect",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Node.js CLI for the Aspect UI builder.",
   "license": "MIT",
   "repository": {
@@ -11,7 +11,8 @@
   "keywords": [
     "ui",
     "aspect",
-    "metacode"
+    "metacode",
+    "uploader"
   ],
   "bugs": {
     "url": "https://github.com/tscepo/aspect-ui/issues"
