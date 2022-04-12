@@ -20,6 +20,6 @@ $ aspect fetch --project <projectId> --out <outputDirectory> --key <apiKey>
 
 Upload jsx/react components using the following command:
 
-```
+```bash
 $ aspect upload --project <projectId> --src <srcDirectory> --key <apiKey>
 ```
