@@ -23,7 +23,7 @@ async function fetchProjectComponents(options: any) {
 
     const urlBase = options.dev
       ? 'http://localhost/'
-      : 'https://api.aspect.app/';
+      : 'https://dev.aspect.app/';
 
     const response = await axios.post(urlBase + 'v1/get-project-components', {
       projectId: project,
