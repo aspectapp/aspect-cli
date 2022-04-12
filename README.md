@@ -5,7 +5,7 @@ The Aspect Node.js library provides convenient syncing of components to and from
 ## Installation
 
 ```bash
-$ npm install @metacode-inc/aspect
+$ npm install @metacode-inc/aspect -g
 ```
 
 ## Usage
