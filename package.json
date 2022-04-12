@@ -1,6 +1,6 @@
 {
   "name": "@metacode-inc/aspect",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Node.js CLI for the Aspect UI builder.",
   "license": "MIT",
   "repository": {

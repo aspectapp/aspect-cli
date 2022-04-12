@@ -1,6 +1,6 @@
-# Aspect UI builder Node.js CLI
+# Node.js CLI for Aspect UI builder
 
-The official command line tool for quickly syncing components to and from the [Aspect UI builder](https://dev.aspect.app).
+The official command line tool for quickly syncing components between the [Aspect UI builder](https://dev.aspect.app) and your codebase.
 
 ## Installation
 
