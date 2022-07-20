@@ -1,11 +1,11 @@
 {
   "name": "@metacode-inc/aspect",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "description": "Node.js CLI for the Aspect UI builder.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tscepo/aspect-ui.git"
+    "url": "git+https://github.com/aspectapp/aspect-cli.git"
   },
   "main": "build/src/index.js",
   "keywords": [
@@ -15,9 +15,9 @@
     "uploader"
   ],
   "bugs": {
-    "url": "https://github.com/tscepo/aspect-ui/issues"
+    "url": "https://github.com/aspectapp/aspect-cli/issues"
   },
-  "homepage": "https://github.com/tscepo/aspect-ui#readme",
+  "homepage": "https://github.com/aspectapp/aspect-cli#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "gts lint",
