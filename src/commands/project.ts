@@ -3,7 +3,6 @@ import * as colors from 'colors';
 import * as fs from 'fs';
 import {writeFile} from 'fs/promises';
 import * as path from 'path';
-import * as glob from 'glob';
 
 async function fetchProjectComponents(options: any) {
   try {
@@ -55,59 +54,4 @@ async function fetchProjectComponents(options: any) {
   }
 }
 
-async function uploadProjectComponents(options: any) {
-  try {
-    const {src, project, key} = options;
-    if (!project) {
-      throw new Error('--project (project ID) is required.');
-    }
-    if (!key) {
-      throw new Error('--key (API key) is required.');
-    }
-
-    console.log(`Uploading project components for project ${project}...`);
-
-    // async glob for all files in the source directory of type .jsx, .tsx, .css, .scss
-    const files: string[] = await new Promise((resolve, reject) => {
-      glob(
-        path.join(src || '', '**/*.{jsx,tsx,css,scss}'),
-        {
-          ignore: ['**/node_modules/**', '**/dist/**', '**/build/**'],
-        },
-        (err, files) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(files);
-          }
-        }
-      );
-    });
-
-    // get each file's contents
-    const fileContent = await Promise.all(
-      files.map(async file => {
-        return {data: await fs.promises.readFile(file, 'utf8'), path: file};
-      })
-    );
-
-    const urlBase = options.dev
-      ? 'http://localhost/'
-      : 'https://dev.aspect.app/';
-    await axios.post(urlBase + 'v1/upload-project-components', {
-      projectId: project,
-      apiKey: key,
-      files: fileContent,
-    });
-
-    console.log(colors.green('Successfully uploaded project components.'));
-  } catch (error) {
-    if (typeof error === 'object') {
-      console.error('error', (error as any)?.response?.data);
-    } else {
-      console.error(error);
-    }
-  }
-}
-
-export {fetchProjectComponents, uploadProjectComponents};
+export {fetchProjectComponents};
